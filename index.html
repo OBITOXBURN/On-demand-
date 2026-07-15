@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navya ❤ Dheeraj Dhoopar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Poppins:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1A0E12; --wine:#5C1A2B; --gold:#C9A24B; --gold-soft:#E4C87A;
+    --ivory:#F4E9DA; --rose:#B23A48; --line: rgba(244,233,218,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background: var(--ink); color: var(--ivory); font-family:'Poppins', sans-serif; font-weight:300; overflow-x:hidden;}
+  ::selection{ background: var(--gold); color: var(--ink); }
+  a{color:inherit;}
+
+  .noise{
+    position:fixed; inset:0; pointer-events:none; z-index:2; opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .hero{
+    position:relative; min-height:100svh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding: 8vh 6vw; background: radial-gradient(ellipse at 50% 20%, rgba(92,26,43,0.55), transparent 60%), var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+  .frame-corner{ position:absolute; width:34px; height:34px; border: 2px solid var(--gold); opacity:0.75; }
+  .frame-corner.tl{ top:24px; left:24px; border-right:none; border-bottom:none;}
+  .frame-corner.tr{ top:24px; right:24px; border-left:none; border-bottom:none;}
+  .frame-corner.bl{ bottom:24px; left:24px; border-right:none; border-top:none;}
+  .frame-corner.br{ bottom:24px; right:24px; border-left:none; border-top:none;}
+
+  .eyebrow{ font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.35em; text-transform:uppercase; color: var(--gold-soft); opacity:0; animation: rise 0.9s 0.15s ease forwards; }
+  .title-card{
+    margin-top:1.6rem; font-family:'Playfair Display', serif; font-weight:900; font-size: clamp(2.6rem, 8vw, 6rem);
+    line-height:1.02; background: linear-gradient(100deg, var(--ivory) 30%, var(--gold-soft) 45%, var(--gold) 50%, var(--ivory) 65%);
+    background-size: 250% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation: rise 1s 0.3s ease forwards, shimmer 6s 1.4s ease-in-out infinite; opacity:0;
+  }
+  .title-card em{ display:block; font-style:italic; font-weight:600; font-size: 0.42em; color: var(--rose); margin-top:0.6rem; }
+  .starring{ margin-top:2.2rem; font-family:'Space Mono', monospace; font-size:0.85rem; letter-spacing:0.15em; opacity:0; animation: rise 0.9s 0.6s ease forwards; }
+  .starring b{ color: var(--gold); }
+  .starring .divider{ display:inline-block; width:36px; height:1px; background:var(--gold); margin:0 12px; }
+
+  .scene{ padding: 12vh 6vw; max-width:1100px; margin:0 auto; border-bottom:1px solid var(--line); }
+  .scene-tag{ font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.3em; color: var(--gold); margin-bottom:1.4rem; opacity:0; transform:translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .scene.visible .scene-tag{ opacity:1; transform:translateY(0); }
+  .scene h2{ font-family:'Playfair Display', serif; font-size: clamp(1.8rem, 4vw, 3rem); color: var(--ivory); opacity:0; transform:translateY(14px); transition: opacity 0.9s 0.08s ease; }
+  .scene.visible h2{ opacity:1; transform:translateY(0); }
+
+  .filmstrip{ margin-top:3.5rem; display:grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .frame-photo{ background: var(--wine); padding: 14px 14px 44px 14px; opacity:0; transition: 0.9s ease; }
+  .scene.visible .frame-photo{ opacity:1; }
+  .frame-photo img{ display:block; width:100%; height:340px; object-fit:cover; border: 1px solid rgba(201,162,75,0.35); }
+
+  .onair-wrap{ margin-top:3.5rem; border: 1px solid var(--gold); padding: 10px; opacity:0; transition: 1s ease; }
+  .scene.visible .onair-wrap{ opacity:1; }
+  video{ width:100%; display:block; background:#000; }
+
+  .reel-row{ display:grid; grid-template-columns: 90px 1fr auto; padding: 22px 4px; border-bottom: 1px solid var(--line); opacity:0; transition: 0.7s; }
+  .scene.visible .reel-row{ opacity:1; }
+
+  .love-btn{ background: transparent; color: var(--ivory); border: 1px solid var(--gold); padding: 12px 22px; cursor:pointer; }
+  .love-btn.bump .heart{ transform: scale(1.5); transition: 0.2s; }
+
+  @keyframes rise{ from{ opacity:0; transform:translateY(18px);} to{ opacity:1; transform:translateY(0);} }
+  @keyframes shimmer{ 0%,100%{ background-position: 250% 0;} 50%{ background-position: -50% 0;} }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<section class="hero">
+  <div class="frame-corner tl"></div><div class="frame-corner tr"></div>
+  <div class="frame-corner bl"></div><div class="frame-corner br"></div>
+  <div class="eyebrow">A Fan Tribute · Now Streaming</div>
+  <h1 class="title-card">Dheeraj Dhoopar<em>seen through Navya's eyes</em></h1>
+  <p class="starring"><b>Fan</b> Navya <span class="divider"></span> <b>On Screen</b> Dheeraj Dhoopar</p>
+</section>
+
+<section class="scene" id="scene-photos">
+  <div class="scene-tag">Scene One</div>
+  <h2>The moments Navya keeps closest</h2>
+  <div class="filmstrip">
+    <figure class="frame-photo"><img src="assets/photo1.jpg" alt="Photo 1"></figure>
+    <figure class="frame-photo"><img src="assets/photo2.jpg" alt="Photo 2"></figure>
+  </div>
+</section>
+
+<section class="scene" id="scene-video">
+  <div class="scene-tag">Scene Two</div>
+  <h2>The character that started it all</h2>
+  <div class="onair-wrap">
+    <video controls preload="metadata" poster="assets/photo1.jpg">
+      <source src="assets/video.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
+<section class="scene" id="scene-reel">
+  <div class="scene-tag">Scene Three</div>
+  <h2>The roles that made him</h2>
+  <div class="reel">
+    <div class="reel-row"><span>2011</span><span>Prem Bharadwaj</span></div>
+    <div class="reel-row"><span>2017</span><span>Karan Luthra</span></div>
+    <div class="reel-row"><span>2022</span><span>Sherdil Shergill</span></div>
+  </div>
+</section>
+
+<section class="scene" id="scene-letter">
+  <div class="scene-tag">Scene Five</div>
+  <button class="love-btn" id="loveBtn"><span class="heart">♥</span> Send Love</button>
+  <p>Sent <b id="loveCount">0</b> times</p>
+</section>
+
+<script>
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.scene, #credits').forEach(el => observer.observe(el));
+
+  const loveBtn = document.getElementById('loveBtn');
+  let count = 0;
+  loveBtn.addEventListener('click', () => {
+    count++;
+    document.getElementById('loveCount').textContent = count;
+    loveBtn.classList.add('bump');
+    setTimeout(() => loveBtn.classList.remove('bump'), 200);
+  });
+</script>
+
+</body>
+</html>

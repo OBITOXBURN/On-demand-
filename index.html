@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navya ❤ Dheeraj Dhoopar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Poppins:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1A0E12; --wine: #5C1A2B; --gold: #C9A24B;
+            --gold-soft: #E4C87A; --ivory: #F4E9DA; --rose: #B23A48;
+            --line: rgba(244,233,218,0.18);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background: var(--ink); color: var(--ivory); font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+        
+        /* Layout & Animations */
+        .noise { position: fixed; inset: 0; pointer-events: none; z-index: 2; opacity: 0.05; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+        
+        .hero { min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 8vh 6vw; background: radial-gradient(ellipse at 50% 20%, rgba(92,26,43,0.55), transparent 60%), var(--ink); }
+        .title-card { font-family: 'Playfair Display', serif; font-size: clamp(2.6rem, 8vw, 6rem); line-height: 1.02; background: linear-gradient(100deg, var(--ivory) 30%, var(--gold-soft) 45%, var(--gold) 50%, var(--ivory) 65%); -webkit-background-clip: text; color: transparent; }
+        
+        .scene { padding: 12vh 6vw; max-width: 1100px; margin: 0 auto; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+        .scene.visible { opacity: 1; transform: translateY(0); }
+        
+        .filmstrip { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; }
+        .frame-photo { background: var(--wine); padding: 14px 14px 44px 14px; }
+        .frame-photo img { display: block; width: 100%; height: 340px; object-fit: cover; }
+        
+        .onair-wrap { border: 1px solid var(--gold); padding: 10px; margin-top: 2rem; }
+        video { width: 100%; display: block; }
+
+        .love-btn { background: transparent; color: var(--ivory); border: 1px solid var(--gold); padding: 12px 22px; cursor: pointer; transition: 0.3s; }
+        .love-btn:hover { background: var(--gold); color: var(--ink); }
+        .bump { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<section class="hero">
+    <div class="eyebrow">A Fan Tribute</div>
+    <h1 class="title-card">Dheeraj Dhoopar</h1>
+    <p>Navya's Digital Tribute</p>
+</section>
+
+<section class="scene">
+    <h2>The moments Navya keeps closest</h2>
+    <div class="filmstrip">
+        <figure class="frame-photo"><img src="assets/photo1.jpg" alt="Photo 1"></figure>
+        <figure class="frame-photo"><img src="assets/photo2.jpg" alt="Photo 2"></figure>
+    </div>
+</section>
+
+<section class="scene">
+    <h2>On Air</h2>
+    <div class="onair-wrap">
+        <video controls>
+            <source src="assets/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</section>
+
+<section class="scene">
+    <h2>Send Love</h2>
+    <button class="love-btn" id="loveBtn">♥ Send Navya's Love</button>
+    <p>Sent <b id="loveCount">0</b> times</p>
+</section>
+
+<script>
+    // Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.scene').forEach(section => observer.observe(section));
+
+    // Love Meter
+    const loveBtn = document.getElementById('loveBtn');
+    const loveCount = document.getElementById('loveCount');
+    let count = 0;
+    loveBtn.addEventListener('click', () => {
+        count++;
+        loveCount.textContent = count;
+        loveBtn.classList.add('bump');
+        setTimeout(() => loveBtn.classList.remove('bump'), 200);
+    });
+</script>
+
+</body>
+</html>

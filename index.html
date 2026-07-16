@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navya ❤ Dheeraj Dhoopar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Poppins:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1A0E12;
+    --wine:#5C1A2B;
+    --gold:#C9A24B;
+    --gold-soft:#E4C87A;
+    --ivory:#F4E9DA;
+    --rose:#B23A48;
+    --line: rgba(244,233,218,0.18);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--ink);
+    color: var(--ivory);
+    font-family:'Poppins', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  ::selection{ background: var(--gold); color: var(--ink); }
+  a{color:inherit;}
+
+  .noise{
+    position:fixed; inset:0; pointer-events:none; z-index:2; opacity:0.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* All content is visible by default (no scroll-trigger dependency).
+     Sections just get a gentle staggered fade-up on page load. */
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(20px);} to{ opacity:1; transform:translateY(0);} }
+
+  /* ---------- HERO / TITLE CARD ---------- */
+  .hero{
+    position:relative;
+    min-height:88vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 8vh 6vw;
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(92,26,43,0.55), transparent 60%),
+      radial-gradient(ellipse at 50% 100%, rgba(201,162,75,0.10), transparent 55%),
+      var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+  .frame-corner{ position:absolute; width:34px; height:34px; border: 2px solid var(--gold); opacity:0.75; }
+  .frame-corner.tl{ top:24px; left:24px; border-right:none; border-bottom:none;}
+  .frame-corner.tr{ top:24px; right:24px; border-left:none; border-bottom:none;}
+  .frame-corner.bl{ bottom:24px; left:24px; border-right:none; border-top:none;}
+  .frame-corner.br{ bottom:24px; right:24px; border-left:none; border-top:none;}
+
+  .eyebrow{
+    font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.35em;
+    text-transform:uppercase; color: var(--gold-soft);
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .title-card{
+    margin-top:1.6rem;
+    font-family:'Playfair Display', serif;
+    font-weight:900;
+    font-size: clamp(2.4rem, 8vw, 5.6rem);
+    line-height:1.02;
+    background: linear-gradient(100deg, var(--ivory) 30%, var(--gold-soft) 45%, var(--gold) 50%, var(--ivory) 65%);
+    background-size: 250% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation: fadeUp 1s 0.2s ease both, shimmer 6s 1.3s ease-in-out infinite;
+  }
+  .title-card em{
+    display:block; font-style:italic; font-weight:600; font-size:0.42em;
+    color: var(--rose); -webkit-text-fill-color: var(--rose); margin-top:0.6rem;
+  }
+  .starring{
+    margin-top:2.2rem; font-family:'Space Mono', monospace; font-size:0.85rem; letter-spacing:0.15em;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+  .starring b{ color: var(--gold); font-weight:700; }
+  .starring .divider{ display:inline-block; width:36px; height:1px; background:var(--gold); vertical-align:middle; margin:0 12px; opacity:0.7;}
+
+  @keyframes shimmer{ 0%,100%{ background-position: 250% 0;} 50%{ background-position: -50% 0;} }
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    font-family:'Space Mono', monospace; font-size:0.65rem; letter-spacing:0.3em;
+    color: var(--gold-soft); opacity:0.6;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    animation: fadeUp 0.9s 0.6s ease both;
+  }
+  .scroll-cue::after{
+    content:""; width:1px; height:28px; background: var(--gold-soft);
+    animation: drop 1.6s ease-in-out infinite;
+  }
+  @keyframes drop{ 0%{ transform:scaleY(0); transform-origin:top;} 45%{ transform:scaleY(1); transform-origin:top;} 55%{ transform:scaleY(1); transform-origin:bottom;} 100%{ transform:scaleY(0); transform-origin:bottom;} }
+
+  /* ---------- SCENE HEADERS ---------- */
+  .scene{
+    padding: 10vh 6vw;
+    max-width:1100px;
+    margin:0 auto;
+    border-bottom:1px solid var(--line);
+  }
+  .scene-tag{
+    font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.3em;
+    color: var(--gold); text-transform:uppercase;
+    display:flex; align-items:center; gap:14px; margin-bottom:1.4rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .scene-tag::before{ content:""; width:26px; height:1px; background:var(--gold); }
+
+  .scene h2{
+    font-family:'Playfair Display', serif; font-weight:700;
+    font-size: clamp(1.8rem, 4vw, 3rem); color: var(--ivory); max-width:16ch;
+    animation: fadeUp 0.9s 0.06s ease both;
+  }
+  .scene p.lede{
+    margin-top:1rem; font-size:1.02rem; line-height:1.7; max-width:52ch;
+    color: rgba(244,233,218,0.78);
+    animation: fadeUp 0.9s 0.12s ease both;
+  }
+
+  /* ---------- FILMSTRIP GALLERY ---------- */
+  .filmstrip{ margin-top:3.5rem; display:grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .frame-photo{
+    position:relative; background: var(--wine); padding: 14px 14px 44px 14px; border-radius:2px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+    transform: rotate(-1.2deg);
+    animation: fadeUp 0.9s 0.18s ease both;
+  }
+  .filmstrip .frame-photo:nth-child(2){ transform: rotate(1.2deg); animation-delay:0.26s; }
+  .frame-photo:hover{ transform: translateY(-6px) rotate(0deg); transition: transform 0.35s ease; }
+  .sprockets{
+    position:absolute; top:0; left:0; right:0; height:14px;
+    background-image: radial-gradient(circle, var(--ink) 3px, transparent 3.2px);
+    background-size: 18px 14px; background-position: 6px center; opacity:0.9;
+  }
+  .frame-photo img{
+    display:block; width:100%; height:340px; object-fit:cover;
+    filter: sepia(0.12) saturate(1.05) contrast(1.03);
+    border: 1px solid rgba(201,162,75,0.35);
+  }
+  .frame-cap{
+    position:absolute; bottom:12px; left:14px; right:14px;
+    font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:0.08em;
+    color: var(--gold-soft); display:flex; justify-content:space-between;
+  }
+  @media (max-width: 640px){ .filmstrip{ grid-template-columns: 1fr; } }
+
+  /* ---------- ON-AIR VIDEO ---------- */
+  .onair-wrap{
+    margin-top:3.5rem; position:relative; border: 1px solid var(--gold); padding: 10px;
+    background: linear-gradient(180deg, rgba(92,26,43,0.4), rgba(0,0,0,0.2));
+    animation: fadeUp 0.9s 0.18s ease both;
+  }
+  .onair-bar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 4px 10px 12px 6px;
+    font-family:'Space Mono', monospace; font-size:0.7rem; letter-spacing:0.15em; color: var(--gold-soft);
+  }
+  .onair-dot{ display:inline-flex; align-items:center; gap:8px; color: var(--rose); font-weight:700; }
+  .onair-dot::before{
+    content:""; width:8px; height:8px; border-radius:50%; background: var(--rose);
+    box-shadow: 0 0 10px var(--rose);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{ opacity:1;} 50%{ opacity:0.25;} }
+  video{ width:100%; display:block; background:#000; border: 1px solid rgba(201,162,75,0.4); }
+
+  /* ---------- CHARACTER REEL ---------- */
+  .reel{ margin-top:3.5rem; display:flex; flex-direction:column; border-top: 1px solid var(--line); }
+  .reel-row{
+    display:grid; grid-template-columns: 90px 1fr auto; gap: 20px; align-items:baseline;
+    padding: 22px 4px; border-bottom: 1px solid var(--line);
+    animation: fadeUp 0.7s ease both;
+  }
+  .reel-row:nth-child(1){ animation-delay:0.05s; }
+  .reel-row:nth-child(2){ animation-delay:0.1s; }
+  .reel-row:nth-child(3){ animation-delay:0.15s; }
+  .reel-row:nth-child(4){ animation-delay:0.2s; }
+  .reel-row:nth-child(5){ animation-delay:0.25s; }
+  .reel-year{ font-family:'Space Mono', monospace; font-size:0.78rem; color: var(--gold-soft); opacity:0.75; }
+  .reel-role{ font-family:'Playfair Display', serif; font-weight:600; font-size:1.15rem; color: var(--ivory); }
+  .reel-role span{
+    display:block; font-family:'Poppins', sans-serif; font-weight:300; font-size:0.82rem;
+    color: rgba(244,233,218,0.6); margin-top:2px;
+  }
+  .reel-tag{
+    font-family:'Space Mono', monospace; font-size:0.68rem; letter-spacing:0.12em;
+    color: var(--rose); border: 1px solid var(--rose); padding: 4px 10px; border-radius:2px;
+    white-space:nowrap; height:fit-content;
+  }
+  @media (max-width:560px){ .reel-row{ grid-template-columns: 1fr; gap:6px; } }
+
+  /* ---------- TROPHY CASE ---------- */
+  .trophies{
+    margin-top:3.5rem; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px; background: var(--line); border: 1px solid var(--line);
+  }
+  .trophy{ background: var(--ink); padding: 24px 20px; animation: fadeUp 0.7s ease both; }
+  .trophy:nth-child(1){ animation-delay:0.05s; }
+  .trophy:nth-child(2){ animation-delay:0.1s; }
+  .trophy:nth-child(3){ animation-delay:0.15s; }
+  .trophy:nth-child(4){ animation-delay:0.2s; }
+  .trophy .mark{ font-family:'Space Mono', monospace; font-size:0.7rem; color: var(--gold); letter-spacing:0.15em; }
+  .trophy p{ margin-top:10px; font-size:0.92rem; line-height:1.55; color: rgba(244,233,218,0.85); }
+
+  /* ---------- NAVYA'S LETTER + LOVE METER ---------- */
+  .letter{
+    margin-top:3.5rem; max-width: 640px;
+    background: linear-gradient(180deg, rgba(244,233,218,0.04), transparent);
+    border-left: 2px solid var(--gold); padding: 2rem 2.2rem;
+    animation: fadeUp 0.9s 0.18s ease both;
+  }
+  .letter p{ font-family:'Playfair Display', serif; font-style:italic; font-size:1.15rem; line-height:1.75; color: var(--ivory); }
+  .letter .from{
+    margin-top:1.4rem; font-family:'Space Mono', monospace; font-size:0.75rem;
+    letter-spacing:0.15em; color: var(--gold); text-transform:uppercase;
+  }
+  .love-meter{ margin-top: 2.6rem; display:flex; align-items:center; gap: 18px; flex-wrap:wrap; }
+  .love-btn{
+    font-family:'Space Mono', monospace; font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase;
+    background: transparent; color: var(--ivory); border: 1px solid var(--gold); padding: 12px 22px;
+    cursor:pointer; display:inline-flex; align-items:center; gap: 10px;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease;
+  }
+  .love-btn:hover{ background: var(--gold); color: var(--ink); }
+  .love-btn:active{ transform: scale(0.96); }
+  .love-btn .heart{ color: var(--rose); font-size:1rem; transition: transform 0.2s ease; }
+  .love-btn.bump .heart{ transform: scale(1.5); }
+  .love-count{ font-family:'Space Mono', monospace; font-size:0.78rem; color: rgba(244,233,218,0.6); }
+  .love-count b{ color: var(--gold-soft); }
+
+  /* ---------- CLOSING CREDITS ---------- */
+  .credits{
+    padding: 12vh 6vw 10vh; text-align:center;
+    background: radial-gradient(ellipse at 50% 0%, rgba(92,26,43,0.5), transparent 60%), var(--ink);
+  }
+  .credits .role{
+    font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.3em; text-transform:uppercase;
+    color: var(--gold); margin-bottom:1rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .credits h3{
+    font-family:'Playfair Display', serif; font-style:italic; font-weight:600;
+    font-size: clamp(1.6rem, 4vw, 2.6rem); color: var(--ivory);
+    animation: fadeUp 0.9s 0.08s ease both;
+  }
+  .credits .sign{
+    margin-top: 1.6rem; font-family:'Playfair Display', serif; font-weight:700; font-size:1.3rem; color: var(--rose);
+    animation: fadeUp 0.9s 0.16s ease both;
+  }
+
+  footer{
+    text-align:center; padding: 3rem 1rem 4rem;
+    font-family:'Space Mono', monospace; font-size:0.68rem; letter-spacing:0.1em;
+    color: rgba(244,233,218,0.35);
+  }
+
+  @media (prefers-reduced-motion: reduce){ *{ animation: none !important; } }
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--gold); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+
+<!-- HERO / TITLE CARD -->
+<section class="hero">
+  <div class="frame-corner tl"></div>
+  <div class="frame-corner tr"></div>
+  <div class="frame-corner bl"></div>
+  <div class="frame-corner br"></div>
+
+  <div class="eyebrow">A Fan Tribute · Now Streaming</div>
+  <h1 class="title-card">Dheeraj Dhoopar<em>seen through Navya's eyes</em></h1>
+  <p class="starring">
+    <b>Fan</b> Navya <span class="divider"></span> <b>On Screen</b> Dheeraj Dhoopar
+  </p>
+
+  <div class="scroll-cue">SCROLL</div>
+</section>
+
+<!-- SCENE 1 — PHOTOS -->
+<section class="scene" id="scene-photos">
+  <div class="scene-tag">Scene One</div>
+  <h2>The moments Navya keeps closest</h2>
+  <p class="lede">Two frames, pulled from Navya's own collection — the kind of pictures a real fan holds onto.</p>
+
+  <div class="filmstrip">
+    <figure class="frame-photo">
+      <div class="sprockets"></div>
+      <img src="assets/photo1.jpg" alt="Navya, photo one">
+      <figcaption class="frame-cap"><span>FRAME 01</span><span>NAVYA</span></figcaption>
+    </figure>
+    <figure class="frame-photo">
+      <div class="sprockets"></div>
+      <img src="assets/photo2.jpg" alt="Navya, photo two">
+      <figcaption class="frame-cap"><span>FRAME 02</span><span>NAVYA</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- SCENE 2 — VIDEO -->
+<section class="scene" id="scene-video">
+  <div class="scene-tag">Scene Two</div>
+  <h2>The character that started it all</h2>
+  <p class="lede">The clip that made Navya a fan for life — Dheeraj Dhoopar, in character, on air.</p>
+
+  <div class="onair-wrap">
+    <div class="onair-bar">
+      <span class="onair-dot">ON AIR</span>
+      <span>DHEERAJ DHOOPAR</span>
+    </div>
+    <video controls preload="metadata" poster="assets/photo1.jpg">
+      <source src="assets/video.mp4" type="video/mp4">
+      Your browser doesn't support embedded video.
+    </video>
+  </div>
+</section>
+
+<!-- SCENE 3 — CHARACTER REEL -->
+<section class="scene" id="scene-reel">
+  <div class="scene-tag">Scene Three</div>
+  <h2>The roles that made him</h2>
+  <p class="lede">Every character worth knowing him by — the ones that turned casual viewers into lifelong fans like Navya.</p>
+
+  <div class="reel">
+    <div class="reel-row">
+      <span class="reel-year">2011</span>
+      <span class="reel-role">Prem Bharadwaj<span>Sasural Simar Ka</span></span>
+      <span class="reel-tag">BREAKTHROUGH</span>
+    </div>
+    <div class="reel-row">
+      <span class="reel-year">2017</span>
+      <span class="reel-role">Karan Luthra<span>Kundali Bhagya</span></span>
+      <span class="reel-tag">ICONIC</span>
+    </div>
+    <div class="reel-row">
+      <span class="reel-year">2022</span>
+      <span class="reel-role">Sherdil Shergill<span>opposite Surbhi Chandna</span></span>
+      <span class="reel-tag">ROMANCE</span>
+    </div>
+    <div class="reel-row">
+      <span class="reel-year">2023</span>
+      <span class="reel-role">Raghav<span>Saubhagyavati Bhava: Niyam Aur Shartein Laagu</span></span>
+      <span class="reel-tag">GREY SHADE</span>
+    </div>
+    <div class="reel-row">
+      <span class="reel-year">2024</span>
+      <span class="reel-role">Subhaan Siddiqui<span>Rabb Se Hai Dua</span></span>
+      <span class="reel-tag">NEW GROUND</span>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 4 — TROPHY CASE -->
+<section class="scene" id="scene-trophies">
+  <div class="scene-tag">Scene Four</div>
+  <h2>Applause, on and off screen</h2>
+  <p class="lede">A few of the honours behind the name — the reason cheering for him never feels one-sided.</p>
+
+  <div class="trophies">
+    <div class="trophy">
+      <div class="mark">ITA AWARD</div>
+      <p>Indian Television Academy Award for Best Actor (Popular)</p>
+    </div>
+    <div class="trophy">
+      <div class="mark">GOLD AWARDS</div>
+      <p>Multiple wins for his portrayal of Karan Luthra in Kundali Bhagya</p>
+    </div>
+    <div class="trophy">
+      <div class="mark">ZEE RISHTEY</div>
+      <p>Favourite Jodi &amp; Favourite Popular Face honours</p>
+    </div>
+    <div class="trophy">
+      <div class="mark">MOST DESIRABLE</div>
+      <p>Ranked among Times Most Desirable Men on TV, back-to-back years</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE 5 — NAVYA'S LETTER + LOVE METER -->
+<section class="scene" id="scene-letter">
+  <div class="scene-tag">Scene Five</div>
+  <h2>A note, straight from Navya</h2>
+
+  <div class="letter">
+    <p>"I didn't just start watching a show — I started waiting for a character to walk back into the frame every single episode. That's what he does. That's why I'm still here, still a fan, still cheering the loudest."</p>
+    <div class="from">— Navya</div>
+  </div>
+
+  <div class="love-meter">
+    <button class="love-btn" id="loveBtn"><span class="heart">♥</span> Send Navya's Love</button>
+    <span class="love-count">Sent <b id="loveCount">0</b> times this visit</span>
+  </div>
+</section>
+
+<!-- CLOSING CREDITS -->
+<section class="credits" id="credits">
+  <div class="role">End of Reel</div>
+  <h3>"Some fans just watch the show.<br>Navya lives every scene."</h3>
+  <div class="sign">— made with ❤ for Navya</div>
+</section>
+
+<footer>NAVYA × DHEERAJ DHOOPAR FAN PAGE — PRIVATE TRIBUTE, NOT AN OFFICIAL SITE</footer>
+
+<script>
+  let loveCount = 0;
+  const loveBtn = document.getElementById('loveBtn');
+  const loveCountEl = document.getElementById('loveCount');
+  loveBtn.addEventListener('click', () => {
+    loveCount++;
+    loveCountEl.textContent = loveCount;
+    loveBtn.classList.add('bump');
+    setTimeout(()=> loveBtn.classList.remove('bump'), 220);
+  });
+</script>
+
+</body>
+</html>
